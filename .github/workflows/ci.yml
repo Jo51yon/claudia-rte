@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - name: Install
         run: npm install
       - name: Type-check + build
@@ -26,3 +26,4 @@ jobs:
           test -f dist/index.d.ts || (echo "::error::dist/index.d.ts was not produced" && exit 1)
       - name: Check for breaking export changes
         run: node scripts/check-breaking-exports.mjs
+
