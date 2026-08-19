@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -22,6 +24,8 @@ jobs:
         run: |
           test -f dist/index.js || (echo "::error::dist/index.js was not produced" && exit 1)
           test -f dist/index.d.ts || (echo "::error::dist/index.d.ts was not produced" && exit 1)
+      - name: Check for breaking export changes
+        run: node scripts/check-breaking-exports.mjs
       - name: Verify package.json version matches an existing tag, or is new
         run: |
           V=$(node -p "require('./package.json').version")
