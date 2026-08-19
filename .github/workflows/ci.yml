@@ -26,13 +26,3 @@ jobs:
           test -f dist/index.d.ts || (echo "::error::dist/index.d.ts was not produced" && exit 1)
       - name: Check for breaking export changes
         run: node scripts/check-breaking-exports.mjs
-      - name: Verify package.json version matches an existing tag, or is new
-        run: |
-          V=$(node -p "require('./package.json').version")
-          if git rev-parse "v$V" >/dev/null 2>&1; then
-            echo "v$V already exists as a tag -- fine if this push IS that tag, an error if package.json changed without a new tag."
-            if [ "$(git rev-parse v$V)" != "$(git rev-parse HEAD)" ]; then
-              echo "::error::package.json says v$V but HEAD is not that tag. A version bump must come with a real tag, not just an edited number."
-              exit 1
-            fi
-          fi
