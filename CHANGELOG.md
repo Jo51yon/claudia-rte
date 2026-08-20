@@ -7,6 +7,26 @@ exports, new optional props, new default styling that doesn't change existing la
 projects should pin to a tag (`#v1.0.0`), never `#main` — `main` can and will contain
 in-progress work between releases.
 
+## v1.1.0 — 2026-08-20
+
+Additive only, no existing export changed. First slice of the block-editor extension (SafeSpaces
+epic docs/_platform/claudia-shared-library-alignment-design.md §7): config-driven page/CMS block
+registry ported from SafeSpaces' UnifiedBlockEditor pattern (blockRegistry.ts/blockStyleSchema.ts/
+types.ts, verified live) rather than invented fresh.
+
+- `PAGE_BLOCK_REGISTRY`, `PageBlockTypeConfig`, `EditorContext`, `blocksForContext` (new file
+  `PageBlocks.ts`) — deliberately namespaced away from the existing `BlockEditor`/`BlockType`
+  (structured-evidence editor) to avoid any collision; that export is untouched.
+- `UNIVERSAL_STYLE_FIELDS`, `BLOCK_STYLE_FIELDS`, `StyleField`, `styleFieldsForType` (new file
+  `PageBlockStyle.ts`) — declarative per-block-type styling, additive fallback.
+- Includes a `section`, `richtext`, `image`, and `chart` block. The chart block's `getDefaultData`
+  shape is copied verbatim from SafeSpaces' live chart block so data round-trips between the two.
+- Not yet built: an actual canvas/palette UI component consuming this registry — this release is
+  the config/types layer only, tracked as the next real task
+  (`claudia-shared-library-alignment-rte-canvas-ui`).
+
+**Known consumers at this tag:** none yet — no project has adopted v1.1.0.
+
 ## v1.0.0 — 2026-08-17
 
 First tagged release. Backfilled honestly against real commit history, not written from
