@@ -1,6 +1,6 @@
 {
   "name": "@jo51yon/claudia-rte",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Claudia shared rich-text and structured-evidence editor components (RichText, RichTextView, BlockEditor, BlockCompletion), ported from SafeSpaces and made project-agnostic via dependency injection for storage. See docs/_platform/component-library.md in the claudia repo.",
   "type": "module",
   "main": "./dist/index.js",

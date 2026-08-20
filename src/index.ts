@@ -6,3 +6,7 @@ export { default as BlockEditor, BLOCK_TYPE_LABEL } from './BlockEditor';
 export type { Block, BlockType, BlockSchema } from './BlockEditor';
 export { default as BlockCompletion } from './BlockCompletion';
 export { decodeSafeText, decodeEntities, stripInvisibleUnicode } from './decodeSafeText';
+export { PAGE_BLOCK_REGISTRY, blocksForContext } from './PageBlocks';
+export type { EditorContext, PageBlockTypeConfig } from './PageBlocks';
+export { UNIVERSAL_STYLE_FIELDS, BLOCK_STYLE_FIELDS, styleFieldsForType } from './PageBlockStyle';
+export type { StyleField } from './PageBlockStyle';
